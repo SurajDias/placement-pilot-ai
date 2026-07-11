@@ -25,6 +25,15 @@ function Navbar({ currentPage, onNavigate }) {
         >
           Resume Analysis
         </button>
+        <button
+          className={
+            currentPage === 'interview' ? 'nav-link active' : 'nav-link'
+          }
+          type="button"
+          onClick={() => onNavigate('interview')}
+        >
+          Interview
+        </button>
       </nav>
     </header>
   )

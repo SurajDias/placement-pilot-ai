@@ -22,7 +22,7 @@ function ListSection({ title, items }) {
   )
 }
 
-function ResumeAnalysis() {
+function ResumeAnalysis({ onContinue }) {
   const [file, setFile] = useState(null)
   const [targetRole, setTargetRole] = useState('Software Engineer')
   const [result, setResult] = useState(null)
@@ -55,6 +55,13 @@ function ResumeAnalysis() {
 
     try {
       const data = await analyzeResume({ file, targetRole })
+      sessionStorage.setItem(
+        'placementPilotResumeAnalysis',
+        JSON.stringify({
+          detected_skills: data.detected_skills || [],
+          target_role: data.target_role || targetRole,
+        }),
+      )
       setResult(data)
     } catch (requestError) {
       setError(requestError.message)
@@ -128,6 +135,14 @@ function ResumeAnalysis() {
                 <h3>Resume Summary</h3>
                 <p>{result.resume_summary || 'No summary returned.'}</p>
               </section>
+
+              <button
+                className="primary-button continue-button"
+                type="button"
+                onClick={onContinue}
+              >
+                Continue to Interview
+              </button>
             </div>
           )}
         </section>

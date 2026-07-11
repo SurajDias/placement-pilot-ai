@@ -2,15 +2,19 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
+import Interview from './pages/Interview'
 import ResumeAnalysis from './pages/ResumeAnalysis'
 
 const routes = {
   home: '/',
   analysis: '/resume-analysis',
+  interview: '/interview',
 }
 
 function getCurrentPage() {
-  return window.location.pathname === routes.analysis ? 'analysis' : 'home'
+  if (window.location.pathname === routes.analysis) return 'analysis'
+  if (window.location.pathname === routes.interview) return 'interview'
+  return 'home'
 }
 
 function App() {
@@ -36,8 +40,10 @@ function App() {
     <div className="app-shell">
       <Navbar currentPage={page} onNavigate={navigate} />
       <main>
-        {page === 'analysis' ? (
-          <ResumeAnalysis />
+        {page === 'interview' ? (
+          <Interview />
+        ) : page === 'analysis' ? (
+          <ResumeAnalysis onContinue={() => navigate('interview')} />
         ) : (
           <Home onStart={() => navigate('analysis')} />
         )}
