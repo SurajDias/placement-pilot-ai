@@ -34,6 +34,13 @@ function Navbar({ currentPage, onNavigate }) {
         >
           Interview
         </button>
+        <button
+          className={currentPage === 'roadmap' ? 'nav-link active' : 'nav-link'}
+          type="button"
+          onClick={() => onNavigate('roadmap')}
+        >
+          Roadmap
+        </button>
       </nav>
     </header>
   )

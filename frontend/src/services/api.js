@@ -1,5 +1,6 @@
 const RESUME_API_URL = 'http://127.0.0.1:8000/api/resume/analyze'
 const INTERVIEW_API_URL = 'http://127.0.0.1:8000/api/interview'
+const ROADMAP_API_URL = 'http://127.0.0.1:8000/api/roadmap'
 
 export async function analyzeResume({ file, targetRole }) {
   const formData = new FormData()
@@ -71,5 +72,21 @@ export async function evaluateInterviewAnswer({ question, answer }) {
       answer,
     },
     'Unable to evaluate the answer. Please try again.',
+  )
+}
+
+export async function generateRoadmap({
+  targetRole,
+  overallScore,
+  missingSkills,
+}) {
+  return postJson(
+    `${ROADMAP_API_URL}/generate`,
+    {
+      target_role: targetRole,
+      overall_score: overallScore,
+      missing_skills: missingSkills,
+    },
+    'Unable to generate the roadmap. Please try again.',
   )
 }
