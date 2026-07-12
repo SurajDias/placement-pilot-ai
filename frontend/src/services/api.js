@@ -1,6 +1,8 @@
-const RESUME_API_URL = 'http://127.0.0.1:8000/api/resume/analyze'
-const INTERVIEW_API_URL = 'http://127.0.0.1:8000/api/interview'
-const ROADMAP_API_URL = 'http://127.0.0.1:8000/api/roadmap'
+const BASE_URL = 'https://placement-pilot-ai.onrender.com'
+
+const RESUME_API_URL = `${BASE_URL}/api/resume/analyze`
+const INTERVIEW_API_URL = `${BASE_URL}/api/interview`
+const ROADMAP_API_URL = `${BASE_URL}/api/roadmap`
 
 export async function analyzeResume({ file, targetRole }) {
   const formData = new FormData()
