@@ -12,7 +12,10 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://placement-pilot-1lvu539qa-suraj-dias.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -22,9 +25,11 @@ app.include_router(resume_router)
 app.include_router(interview_router)
 app.include_router(roadmap_router)
 
+
 @app.get("/")
 def root():
     return {"message": "PlacementPilot AI backend is running"}
+
 
 @app.get("/health")
 def health_check():
